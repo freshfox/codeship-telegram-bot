@@ -1,0 +1,53 @@
+#!/bin/bash
+ENV=$1
+
+if [ -z ${ENV} ]; then
+	echo "Usage: `basename $0` <environment>"
+	exit 1
+fi
+
+function deploy {
+	local host=$1
+	local user=$2
+	local appDir=$3
+	local envFile=$4
+
+
+	includes=(
+    	"api/***"
+    	"config/"
+    	"config/app.js"
+    	"config/index.js"
+    	"index.js"
+    	"package.json"
+    )
+
+    excludes=(
+    )
+
+    params=()
+    for E in "${excludes[@]}"; do
+        params+=(" --exclude=\"${E}\"")
+    done
+
+    for E in "${includes[@]}"; do
+        params+=(" --include=\"${E}\"")
+    done
+    params+=(" --exclude=\"*\"")
+
+    cmd="rsync -av ./ ${user}@${host}:${appDir} ${params[@]} --delete --progress"
+    echo ${cmd}
+    eval ${cmd}
+
+	ssh ${user}@${host} << HERE
+
+		ln -fs ${envFile} ${appDir}/.env
+
+HERE
+}
+
+case ${ENV} in
+	"production")
+		deploy 80.108.157.35 root /root/htdocs/codeship-telegram-bot /root/.codeship-telegram-bot
+		;;
+esac
