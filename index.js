@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 
 app.post('/codeship/:chatId', (req, res) => {
 	res.send();
-	telegramService.send(req.body);
+	telegramService.send(req.params.chatId, req.body);
 });
 
 app.listen(Config.app.port, function()  {
