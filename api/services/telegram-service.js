@@ -22,7 +22,7 @@ class TelegramService {
 		this.bot.sendMessage(msg.chat.id, text);
 	}
 
-	send(chatId, message) {
+	send(chatId, message, formatType) {
 		return this.bot.sendMessage(chatId, format(message), {
 			parse_mode: 'HTML',
 			disable_web_page_preview: true
@@ -39,8 +39,8 @@ class TelegramService {
 
 function format(msg) {
 	let build = msg.build;
-	return `${emoji.ship} <b>${build.project_name}:</b> ${build.message}\n
-			on <code>${build.branch}</code> - <b>${build.status}</b> ${emoji[build.status] || ''}\n
+	return `${emoji.ship} <b>${build.project_name}:</b> ${build.message}
+			on <code>${build.branch}</code> - <b>${build.status}</b> ${emoji[build.status] || ''}
 			<a href="${build.build_url}">Open on Codeship</a>`;
 }
 

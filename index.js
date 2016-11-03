@@ -11,9 +11,12 @@ app.get('/', (req, res) => {
 	res.send('OK');
 });
 
-app.post('/codeship/:chatId', (req, res) => {
+app.post('/codeship/:chatId/:format?', (req, res) => {
 	res.send();
-	telegramService.send(req.params.chatId, req.body);
+	let data = req.body ? req.body.build : null;
+	if (data && (data.status == 'success' || data.status == 'error')) {
+		telegramService.send(req.params.chatId, req.body, req.params.format);
+	}
 });
 
 app.listen(Config.app.port, function()  {
