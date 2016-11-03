@@ -1,0 +1,4 @@
+
+describe('Codeship Telegram Bot', () => {
+
+});
