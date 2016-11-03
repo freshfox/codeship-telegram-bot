@@ -16,7 +16,11 @@
   "author": "Dominic Bartl",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.14.0"
+    "body-parser": "^1.15.2",
+    "cnfg": "^1.2.0",
+    "express": "^4.14.0",
+    "node-env-file": "^0.1.8",
+    "node-telegram-bot-api": "^0.24.0"
   },
   "devDependencies": {
     "mocha": "^3.1.2"

@@ -1,12 +1,16 @@
 let express = require('express');
+let parser = require('body-parser');
 let app = express();
 
-app.get('/', function (req, res) {
-	res.send('OK');
+let telegramService = require('./api/services/telegram-service');
+
+app.use(parser.json());
+
+app.post('/codeship/:chatId', (req, res) => {
+	res.send();
+	telegramService.send(req.body);
 });
 
-app.post('/codeship', (req, res) => {
-	console.log('Got request');
-});
+app.listen(3000, function()  {
 
-app.listen(3000);
+});
