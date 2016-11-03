@@ -7,6 +7,10 @@ let telegramService = require('./api/services/telegram-service');
 
 app.use(parser.json());
 
+app.get('/', (req, res) => {
+	res.send('OK');
+});
+
 app.post('/codeship/:chatId', (req, res) => {
 	res.send();
 	telegramService.send(req.body);
