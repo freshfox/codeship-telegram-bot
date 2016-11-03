@@ -1,6 +1,7 @@
 let express = require('express');
 let parser = require('body-parser');
 let app = express();
+let Config = require('./config');
 
 let telegramService = require('./api/services/telegram-service');
 
@@ -11,6 +12,6 @@ app.post('/codeship/:chatId', (req, res) => {
 	telegramService.send(req.body);
 });
 
-app.listen(3000, function()  {
-
+app.listen(Config.app.port, function()  {
+	console.log(new Date().toDateString(), 'Server started!');
 });

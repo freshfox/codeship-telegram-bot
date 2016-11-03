@@ -1,5 +1,6 @@
 let TelegramBot = require('node-telegram-bot-api');
-let url = 'http://80.108.157.35:3000/codeship/';
+let Config = require('../../config');
+let url = Config.app.url + '/codeship/';
 
 let emoji = {
 	ship: '\u{1F6A2}',
@@ -15,9 +16,10 @@ class TelegramService {
 	}
 
 	onMessage(msg) {
-		console.log(msg);
-		var fromId = msg.chat.id;
-		this.bot.sendMessage(fromId, 'Add this URL to your Codeship notification settings: ' + url + fromId);
+		let text = `${emoji.ship} Add this URL to your Codeship notification settings:
+					${url}${msg.chat.id}
+					@codeship_bot by @dominic0`;
+		this.bot.sendMessage(msg.chat.id, text);
 	}
 
 	send(chatId, message) {
@@ -26,9 +28,10 @@ class TelegramService {
 			disable_web_page_preview: true
 		})
 			.then(() => {
-				console.log('Sent message to', chatId);
+				console.log(new Date().toDateString(), 'Sent message to', chatId);
 			})
 			.catch((err) => {
+				console.error(new Date().toDateString());
 				console.error(err);
 			});
 	}
@@ -36,7 +39,7 @@ class TelegramService {
 
 function format(msg) {
 	let build = msg.build;
-	return `${emoji.ship}<b>${build.project_name}:</b> ${build.message}\n
+	return `${emoji.ship} <b>${build.project_name}:</b> ${build.message}\n
 			on <code>${build.branch}</code> - <b>${build.status}</b> ${emoji[build.status] || ''}\n
 			<a href="${build.build_url}">Open on Codeship</a>`;
 }
