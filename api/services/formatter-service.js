@@ -9,10 +9,14 @@ class FormatterService {
 	}
 
 	getStartMessage(chatId) {
-		let hook = url.resolve(webHook, chatId);
+		let hook = this.getWebHook(chatId);
 		return `${FormatterService.EMOJI.ship} Add this URL to your Codeship notification settings:
 				${hook}
 				@codeship_bot by @dominic0`;
+	}
+
+	getWebHook(chatId) {
+		return url.resolve(webHook, `${chatId}`);
 	}
 
 }
