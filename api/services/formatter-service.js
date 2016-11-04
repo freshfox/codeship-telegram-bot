@@ -5,7 +5,7 @@ let webHook = url.resolve(Config.app.url, '/codeship');
 class FormatterService {
 
 	format(type, build) {
-		return defaultFormat(chatId)
+		return defaultFormat(build)
 	}
 
 	getStartMessage(chatId) {

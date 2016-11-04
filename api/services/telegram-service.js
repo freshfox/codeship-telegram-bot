@@ -20,11 +20,12 @@ class TelegramService {
 			disable_web_page_preview: true
 		})
 			.then(() => {
-				console.log(new Date().toDateString(), 'Sent message to', chatId);
+				console.log(new Date().toISOString(), 'Sent message to', chatId);
 			})
 			.catch((err) => {
-				console.error(new Date().toDateString());
+				console.error(new Date().toISOString());
 				console.error(err);
+				throw err;
 			});
 	}
 }

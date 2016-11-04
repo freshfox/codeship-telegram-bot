@@ -16,6 +16,7 @@
   "author": "Dominic Bartl",
   "license": "MIT",
   "dependencies": {
+    "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "cnfg": "^1.2.0",
     "express": "^4.14.0",

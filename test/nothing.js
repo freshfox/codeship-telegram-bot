@@ -1,42 +1,33 @@
 let service = require('../api/services/telegram-service');
+let server = require('../api/server');
 
-describe('Codeship Telegram Bot', () => {
+describe('Codeship Telegram Bot', function () {
 
 	it('should send a Codeship status message to Telegram', () => {
+		return service.send(13706525, resp);
+	});
 
-		return service.send(13706525, resp2);
+	describe('Server', function () {
+
+		it('should start server', function () {
+			return server.start();
+		});
 
 	});
 
 });
 
-let resp1 = { build:
-{ build_url: 'https://app.codeship.com/projects/183097/builds/19791857',
-	commit_url: 'https://github.com/Bartinger/codeship-telegram-bot/commit/6b68ea648cc75b00cfacf00e748f0035e42b861b',
-	project_id: 183097,
-	build_id: 19791857,
-	status: 'testing',
-	project_name: 'Bartinger/codeship-telegram-bot',
-	project_full_name: 'Bartinger/codeship-telegram-bot',
-	commit_id: '6b68ea648cc75b00cfacf00e748f0035e42b861b',
-	short_commit_id: '6b68e',
-	message: 'Add test dir',
-	committer: 'Bartinger',
-	branch: 'master',
-	started_at: '2016-11-03 20:20:17 UTC',
-	finished_at: null } };
-
-let resp2 = { build:
-{ build_url: 'https://app.codeship.com/projects/183097/builds/19791857',
-	commit_url: 'https://github.com/Bartinger/codeship-telegram-bot/commit/6b68ea648cc75b00cfacf00e748f0035e42b861b',
-	project_id: 183097,
-	build_id: 19791857,
+let resp = { build:
+{ build_url: 'https://app.codeship.com/projects/123456/builds/7891011',
+	commit_url: 'https://github.com/freshfox/codeship-telegram-bot/commit/this-is-not-a-real-commit',
+	project_id: 123456,
+	build_id: 7891011,
 	status: 'success',
-	project_name: 'Bartinger/codeship-telegram-bot',
-	project_full_name: 'Bartinger/codeship-telegram-bot',
+	project_name: 'freshfox/codeship-telegram-bot',
+	project_full_name: 'freshfox/codeship-telegram-bot',
 	commit_id: '6b68ea648cc75b00cfacf00e748f0035e42b861b',
 	short_commit_id: '6b68e',
-	message: 'Add test dir',
+	message: 'This is a test message',
 	committer: 'Bartinger',
 	branch: 'master',
 	started_at: '2016-11-03 20:20:17 UTC',
