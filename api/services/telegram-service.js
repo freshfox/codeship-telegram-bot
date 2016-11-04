@@ -1,6 +1,7 @@
 let TelegramBot = require('node-telegram-bot-api');
 let Config = require('../../config');
 let formatter = require('./formatter-service');
+let botan = require('./botan-service');
 
 class TelegramService {
 
@@ -10,6 +11,7 @@ class TelegramService {
 	}
 
 	onMessage(msg) {
+		botan.trackInitMessage(msg);
 		let text = formatter.getStartMessage(msg.chat.id);
 		this.bot.sendMessage(msg.chat.id, text);
 	}

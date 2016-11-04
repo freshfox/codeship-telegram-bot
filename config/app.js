@@ -6,5 +6,6 @@ module.exports = {
 		connection: {
 			polling: true
 		}
-	}
+	},
+	botanToken: process.env.BOTAN_TOKEN
 };

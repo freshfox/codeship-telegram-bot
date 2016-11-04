@@ -18,6 +18,7 @@
   "dependencies": {
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
+    "botanio": "0.0.6",
     "cnfg": "^1.2.0",
     "express": "^4.14.0",
     "node-env-file": "^0.1.8",
