@@ -1,7 +1,8 @@
 let Server = require('./api/server');
 let server = new Server();
+let logger = require('./api/logger');
 
 server.start()
 	.then(() => {
-		console.log(new Date().toISOString(), "Server started!");
+		logger.log("Server started!");
 	});
