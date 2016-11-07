@@ -1,6 +1,6 @@
 let Config = require('../../config');
 let url = require('url');
-let webHook = url.resolve(Config.app.url, '/codeship');
+let webHook = url.resolve(Config.app.url, '/codeship/');
 
 class FormatterService {
 
