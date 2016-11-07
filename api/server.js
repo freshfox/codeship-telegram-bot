@@ -20,6 +20,7 @@ app.post('/codeship/:chatId', (req, res) => {
 	let format = req.query.format;
 
 	if (!build) {
+		logger.error('No build in body present');
 		return;
 	}
 
