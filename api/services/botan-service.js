@@ -18,7 +18,9 @@ class BotanService {
 	}
 
 	trackBuildNotification(build) {
-		build.from = {};
+		build.from = {
+			id: build.project_id
+		};
 		send(build, 'build');
 	}
 

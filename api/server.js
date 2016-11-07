@@ -9,7 +9,7 @@ let logger = require('./logger');
 
 app.use(parser.json());
 app.get('/', (req, res) => {
-	res.send('OK');
+	res.redirect('https://telegram.me/codeship_bot');
 });
 
 app.post('/codeship/:chatId', (req, res) => {
