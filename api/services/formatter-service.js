@@ -24,7 +24,7 @@ class FormatterService {
 FormatterService.EMOJI = {
 	ship: '\u{1F6A2}',
 	success: '\u{2705}',
-	error: '\u{2705}'
+	error: '\u{274C}'
 };
 
 function defaultFormat(build) {
