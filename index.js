@@ -1,4 +1,5 @@
-let server = require('./api/server');
+let Server = require('./api/server');
+let server = new Server();
 
 server.start()
 	.then(() => {

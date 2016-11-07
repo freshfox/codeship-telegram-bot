@@ -1,15 +1,16 @@
 let service = require('../api/services/telegram-service');
-let server = require('../api/server');
+let Server = require('../api/server');
+let server = new Server();
 
 describe('Codeship Telegram Bot', function () {
 
 	it('should send a Codeship status message to Telegram', () => {
-		return service.send(13706525, resp);
+		return service.send(13706525, resp.build);
 	});
 
 	describe('Server', function () {
 
-		it('should start server', function () {
+		it('should start server', () => {
 			return server.start();
 		});
 

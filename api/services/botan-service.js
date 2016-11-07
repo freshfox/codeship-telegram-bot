@@ -5,12 +5,20 @@ if (token) {
 	botan = require('botanio')(token);
 }
 
+function send(msg, event) {
+	if (botan) {
+		botan.track(msg, event);
+	}
+}
+
 class BotanService {
 
 	trackInitMessage(msg) {
-		if (botan) {
-			botan.track(msg, 'Start');
-		}
+		send(msg, 'Start');
+	}
+
+	trackBuildNotification(build) {
+		send(build, 'build');
 	}
 
 }

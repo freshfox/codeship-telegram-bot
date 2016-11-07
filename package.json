@@ -25,6 +25,7 @@
     "node-telegram-bot-api": "^0.24.0"
   },
   "devDependencies": {
-    "mocha": "^3.1.2"
+    "mocha": "^3.1.2",
+    "should": "^11.1.1"
   }
 }

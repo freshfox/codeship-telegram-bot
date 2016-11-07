@@ -3,25 +3,35 @@ let express = require('express');
 let parser = require('body-parser');
 let app = express();
 let Config = require('../config');
-let telegramService = require('./services/telegram-service');
+let botanService = require('./services/botan-service');
+let buildService = require('./services/build-service');
+let logger = require('./logger');
 
 app.use(parser.json());
 app.get('/', (req, res) => {
 	res.send('OK');
 });
 
-app.post('/codeship/:chatId/:format?', (req, res) => {
+app.post('/codeship/:chatId', (req, res) => {
 	res.send();
-	let data = req.body ? req.body.build : null;
-	if (data && (data.status == 'success' || data.status == 'error')) {
-		telegramService.send(req.params.chatId, req.body, req.params.format);
+	let build = req.body ? req.body.build : null;
+	let chatId = req.params.chatId;
+	let mode = req.query.mode;
+	let format = req.query.format;
+
+	if (!build) {
+		return;
 	}
+
+	logger.log('Build:', build.project_id, build.status);
+
+	botanService.trackBuildNotification(build);
+	buildService.onBuild(build, chatId, mode, format);
 });
 
 class Server {
 
-	constructor(app) {
-		this.app = app;
+	constructor() {
 	}
 
 	start() {
@@ -32,5 +42,5 @@ class Server {
 
 }
 
-module.exports = new Server(app);
+module.exports = Server;
 

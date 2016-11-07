@@ -2,6 +2,7 @@ let TelegramBot = require('node-telegram-bot-api');
 let Config = require('../../config');
 let formatter = require('./formatter-service');
 let botan = require('./botan-service');
+let logger = require('../logger');
 
 class TelegramService {
 
@@ -17,16 +18,16 @@ class TelegramService {
 	}
 
 	send(chatId, message, formatType) {
-		return this.bot.sendMessage(chatId, formatter.format(formatType, message.build), {
+		return this.bot.sendMessage(chatId, formatter.format(formatType, message), {
 			parse_mode: 'HTML',
 			disable_web_page_preview: true
 		})
 			.then(() => {
-				console.log(new Date().toISOString(), 'Sent message to', chatId);
+				logger.log('Sent message to', chatId);
+				return 'sent'
 			})
 			.catch((err) => {
-				console.error(new Date().toISOString());
-				console.error(err);
+				logger.error(err);
 				throw err;
 			});
 	}
