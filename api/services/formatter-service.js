@@ -35,7 +35,7 @@ FormatterService.EMOJI = {
 };
 
 function defaultFormat(build) {
-	return `${FormatterService.EMOJI.ship} <b>${build.project_name}</b> - <code>${build.branch}</code> ${FormatterService.EMOJI[build.status] || ''}
+	return `${FormatterService.EMOJI[build.status] || ''} <b>${build.project_name}</b> - <code>${build.branch}</code>
 <b>${build.committer}</b>: ${build.message}
 <a href="${build.build_url}">Open on Codeship</a>`;
 }
