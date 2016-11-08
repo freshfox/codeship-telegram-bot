@@ -14,7 +14,10 @@ class TelegramService {
 	onMessage(msg) {
 		botan.trackInitMessage(msg);
 		let text = formatter.getStartMessage(msg.chat.id);
-		this.bot.sendMessage(msg.chat.id, text);
+		this.bot.sendMessage(msg.chat.id, text, {
+			parse_mode: 'HTML',
+			disable_web_page_preview: true
+		});
 	}
 
 	send(chatId, message, formatType) {

@@ -11,15 +11,15 @@ class FormatterService {
 	getStartMessage(chatId) {
 		let hook = this.getWebHook(chatId);
 		return `${FormatterService.EMOJI.ship} Hi! I see you want to receive Codeship notifications.
-				Just add this URL as a Webhook to your Codeship notification settings to receive notifications in this conversation.
-				
-				To receive <b>only failing builds</b> (and the recovering builds)
-				${hook}
+Just add this URL as a Webhook to your Codeship notification settings to receive notifications in this conversation.
 
-				To receive <b>all builds</b> (succeeding and failing)
-				${hook}?mode=all
+To receive <b>only failing builds</b> (and the recovering builds)
+${hook}
 
-				@codeship_bot by @dominic0`;
+To receive <b>all builds</b> (succeeding and failing)
+${hook}?mode=all
+
+@codeship_bot by @dominic0`;
 	}
 
 	getWebHook(chatId) {
@@ -36,8 +36,8 @@ FormatterService.EMOJI = {
 
 function defaultFormat(build) {
 	return `${FormatterService.EMOJI.ship} <b>${build.project_name}</b> - <code>${build.branch}</code> ${FormatterService.EMOJI[build.status] || ''}
- 			<b>${build.committer}</b>: ${build.message}
-			<a href="${build.build_url}">Open on Codeship</a>`;
+<b>${build.committer}</b>: ${build.message}
+<a href="${build.build_url}">Open on Codeship</a>`;
 }
 
 module.exports = new FormatterService();
