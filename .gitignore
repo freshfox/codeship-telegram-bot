@@ -1,4 +1,11 @@
 node_modules/
 .idea/
-*.iml
 .env
+
+!scripts/
+scripts/*
+
+!scripts/deploy
+!scripts/.deploy.sample
+
+
