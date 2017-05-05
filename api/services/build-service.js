@@ -14,7 +14,7 @@ class BuildService {
 
     didLastBuildSucceed(projectId) {
         let build = this.getBuild(projectId);
-        return build ? build.status == 'success' : true;
+        return build ? build.status === 'success' : true;
     }
 
     clear() {
@@ -23,16 +23,16 @@ class BuildService {
 
     onBuild(build, chatId, mode, format) {
         // Just listen for success and errors
-        if (build.status != 'success' && build.status != 'error') {
+        if (build.status !== 'success' && build.status !== 'error') {
             return Promise.resolve();
         }
 
-        if (mode != 'all') {
+        if (mode !== 'all') {
             let success = this.didLastBuildSucceed(build.project_id);
             this.setBuild(build);
 
             // Did last build succeed
-            if (build.status != 'error' && success) {
+            if (build.status !== 'error' && success) {
                 return Promise.resolve();
             }
         }
