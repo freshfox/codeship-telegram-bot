@@ -1,6 +1,7 @@
 let cache = {};
 let telegramService = require('./telegram-service');
 let Promise = require('bluebird');
+let logger = require('../logger');
 
 class BuildService {
 
@@ -26,6 +27,8 @@ class BuildService {
         if (build.status !== 'success' && build.status !== 'error') {
             return Promise.resolve();
         }
+
+		logger.log(`Build: ${build.project_name} (${build.status})`);
 
         if (mode !== 'all') {
             let success = this.didLastBuildSucceed(build.project_id);
