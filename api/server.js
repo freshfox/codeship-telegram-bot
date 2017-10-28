@@ -12,10 +12,18 @@ app.get('/', (req, res) => {
 	res.redirect('https://telegram.me/codeship_bot');
 });
 
+const redirects = {
+	'-147834436': '-1001141933878'
+};
+
 app.post('/codeship/:chatId', (req, res) => {
 	res.send();
 	let build = req.body ? req.body.build : null;
 	let chatId = req.params.chatId;
+	if (redirects[chatId]) {
+		chatId = redirects[chatId];
+	}
+	
 	let mode = req.query.mode;
 	let format = req.query.format;
 
