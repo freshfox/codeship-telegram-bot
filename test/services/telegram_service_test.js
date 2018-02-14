@@ -9,4 +9,14 @@ describe('TelegramService', function () {
 
     });
 
+    it('should trigger welcome message', () => {
+
+		return service.onMessage({
+			chat: {
+				id: 13706525
+			}
+		});
+
+    });
+
 });
