@@ -4,10 +4,12 @@
   "description": "A Telegram Bot for Codeship notifications",
   "main": "index.js",
   "engines": {
-    "node": "6.9.1"
+    "node": "8"
   },
   "scripts": {
-    "test": "mocha test"
+    "build": "tsc",
+    "test": "mocha src/test",
+    "start": "node dist/app/start"
   },
   "keywords": [
     "telgram",
@@ -16,16 +18,17 @@
   "author": "Dominic Bartl",
   "license": "MIT",
   "dependencies": {
-    "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
-    "botanio": "0.0.6",
     "cnfg": "^1.2.0",
-    "express": "^4.14.0",
+    "express": "^4.17.1",
     "node-env-file": "^0.1.8",
     "node-telegram-bot-api": "^0.30.0"
   },
   "devDependencies": {
-    "mocha": "^3.1.2",
-    "should": "^11.1.1"
+    "@types/express": "^4.17.0",
+    "@types/mocha": "^5.2.7",
+    "mocha": "^6.1.4",
+    "should": "^13.2.3",
+    "typescript": "^3.5.2"
   }
 }
