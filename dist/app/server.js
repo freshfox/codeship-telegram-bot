@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const parser = require("body-parser");
 const build_service_1 = require("./services/build_service");
+const telegram_service_1 = require("./services/telegram_service");
 exports.app = express();
 exports.app.use(parser.json());
 exports.app.get('/', (req, res) => {
@@ -12,6 +13,10 @@ const redirects = {
     '-147834436': '-1001141933878'
 };
 const buildService = new build_service_1.BuildService();
+exports.app.post(telegram_service_1.telegramWebhookPath, (req, res) => {
+    telegram_service_1.telegramService.processUpdate(req.body);
+    res.status(200).send();
+});
 exports.app.post('/:ci/:chatId', (req, res) => {
     let ci = req.params.ci;
     let chatId = req.params.chatId;

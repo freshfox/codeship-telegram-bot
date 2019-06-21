@@ -1,13 +1,10 @@
 import {handlers} from "../handlers";
-import {TelegramService} from "./telegram_service";
-
+import {telegramService} from "./telegram_service";
 
 export class BuildService {
 
-	private readonly telegram: TelegramService;
 
 	constructor() {
-		this.telegram = new TelegramService();
 	}
 
     async onBuild(ci: string, chatId: string, data: any) {
@@ -21,7 +18,7 @@ export class BuildService {
 		const msg = handler(data);
 
 		if (msg) {
-			const result = await this.telegram.send(chatId, msg);
+			const result = await telegramService.send(chatId, msg);
 			console.log(msg, result);
 			return result;
 		}

@@ -12,7 +12,6 @@ const handlers_1 = require("../handlers");
 const telegram_service_1 = require("./telegram_service");
 class BuildService {
     constructor() {
-        this.telegram = new telegram_service_1.TelegramService();
     }
     onBuild(ci, chatId, data) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -23,7 +22,7 @@ class BuildService {
             console.log('Processing', data);
             const msg = handler(data);
             if (msg) {
-                const result = yield this.telegram.send(chatId, msg);
+                const result = yield telegram_service_1.telegramService.send(chatId, msg);
                 console.log(msg, result);
                 return result;
             }

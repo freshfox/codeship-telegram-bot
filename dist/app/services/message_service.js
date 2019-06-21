@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Config = require("../../../config");
 const handlers_1 = require("../handlers");
+const config_1 = require("../core/config");
 class MessageService {
     static getBuildMessage(info) {
         return `${info.emoji} <b>${info.projectName}</b> - <code>${info.branch}</code>
@@ -20,7 +20,7 @@ ${hook}
     }
     static getWebHooks(cis, chatId) {
         return cis.map((ci) => {
-            return Config.app.url + `/${ci}/${chatId}`;
+            return config_1.Config.app.url + `/${ci}/${chatId}`;
         }).join('\n');
     }
 }

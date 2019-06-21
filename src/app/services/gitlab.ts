@@ -2,6 +2,13 @@ import {Emoji, MessageInfo} from "./message_service";
 
 export namespace GitLab {
 
+	export enum Status {
+		Success = 'success',
+		Failed = 'failed',
+		Running = 'running',
+		Created = 'created'
+	}
+
 	export interface WebhookPayload {
 		object_kind: string,
 		ref: string,
@@ -11,7 +18,7 @@ export namespace GitLab {
 		build_id: number,
 		build_name: string,
 		build_stage: string,
-		build_status: string,
+		build_status: Status,
 		build_started_at: null,
 		build_finished_at: null,
 		build_duration: null,
@@ -46,7 +53,7 @@ export namespace GitLab {
 	}
 
 	export function processPayload(payload: WebhookPayload): MessageInfo {
-		if (payload.build_status !== 'success' && payload.build_status !== 'error') {
+		if (payload.build_status !== Status.Success && payload.build_status !== Status.Failed) {
 			return null;
 		}
 		return {
@@ -60,10 +67,10 @@ export namespace GitLab {
 		};
 	}
 
-	function getEmoji(status: string) {
+	function getEmoji(status: Status) {
 		switch (status) {
-			case 'success': return Emoji.Success;
-			case 'error': return Emoji.Error;
+			case Status.Success: return Emoji.Success;
+			case Status.Failed: return Emoji.Error;
 		}
 		return Emoji.QuestionMark;
 	}

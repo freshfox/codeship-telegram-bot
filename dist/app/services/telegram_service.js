@@ -9,11 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const TelegramBot = require("node-telegram-bot-api");
-const Config = require("../../../config");
 const message_service_1 = require("./message_service");
+const config_1 = require("../core/config");
 class TelegramService {
     constructor() {
-        this.bot = new TelegramBot(Config.app.telegram.token, { polling: true });
+        this.bot = new TelegramBot(config_1.Config.app.telegramToken);
+        this.bot.setWebHook(config_1.Config.app.url + exports.telegramWebhookPath);
         this.bot.on('message', this.onMessage.bind(this));
     }
     onMessage(msg) {
@@ -32,6 +33,10 @@ class TelegramService {
             });
         });
     }
+    processUpdate(body) {
+        return this.bot.processUpdate(body);
+    }
 }
-exports.TelegramService = TelegramService;
+exports.telegramWebhookPath = '/telegram' + config_1.Config.app.telegramToken;
+exports.telegramService = new TelegramService();
 //# sourceMappingURL=telegram_service.js.map

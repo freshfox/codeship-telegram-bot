@@ -1,13 +1,14 @@
 import * as TelegramBot from 'node-telegram-bot-api';
-import * as Config from '../../../config';
 import {MessageInfo, MessageService} from "./message_service";
+import {Config} from "../core/config";
 
-export class TelegramService {
+class TelegramService {
 
 	private bot;
 
 	constructor()  {
-		this.bot = new TelegramBot(Config.app.telegram.token, { polling: true });
+		this.bot = new TelegramBot(Config.app.telegramToken);
+		this.bot.setWebHook(Config.app.url + telegramWebhookPath);
 		this.bot.on('message', this.onMessage.bind(this));
 	}
 
@@ -26,4 +27,12 @@ export class TelegramService {
 			disable_web_page_preview: true
 		});
 	}
+
+	processUpdate(body: any) {
+		return this.bot.processUpdate(body);
+	}
 }
+
+export const telegramWebhookPath = '/telegram' + Config.app.telegramToken;
+
+export const telegramService = new TelegramService();

@@ -2,14 +2,18 @@
   "name": "codeship-telegram-bot",
   "version": "1.0.0",
   "description": "A Telegram Bot for Codeship notifications",
-  "main": "index.js",
+  "main": "dist/app/index.js",
   "engines": {
     "node": "8"
   },
   "scripts": {
     "build": "tsc",
     "test": "mocha src/test",
-    "start": "node dist/app/start"
+    "start": "node dist/app/start",
+    "deploy": "mkdir empty && firebase deploy -f --token \"$FIREBASE_TOKEN\" --project build-notifier-bot && rm -r empty",
+    "firebase": "firebase",
+    "config:get": "firebase functions:config:get --project build-notifier-bot",
+    "config:set": "firebase functions:config:set --project build-notifier-bot"
   },
   "keywords": [
     "telgram",
@@ -21,12 +25,15 @@
     "body-parser": "^1.15.2",
     "cnfg": "^1.2.0",
     "express": "^4.17.1",
+    "firebase-admin": "^8.2.0",
+    "firebase-functions": "^3.0.1",
     "node-env-file": "^0.1.8",
     "node-telegram-bot-api": "^0.30.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.0",
     "@types/mocha": "^5.2.7",
+    "firebase-tools": "^7.0.1",
     "mocha": "^6.1.4",
     "should": "^13.2.3",
     "typescript": "^3.5.2"

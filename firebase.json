@@ -1,0 +1,27 @@
+{
+	"functions": {
+		"source": ".",
+		"ignore": [
+			"node_modules",
+			"scripts",
+			"src",
+			".env_sample",
+			".env",
+			".gitignore",
+			"tsconfig.json"
+		]
+	},
+	"hosting": [
+		{
+			"target": "api",
+			"public": "empty",
+			"cleanUrls": true,
+			"rewrites": [
+				{
+					"source": "**",
+					"function": "api"
+				}
+			]
+		}
+	]
+}

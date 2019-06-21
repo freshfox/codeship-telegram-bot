@@ -3,8 +3,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const message_service_1 = require("./message_service");
 var GitLab;
 (function (GitLab) {
+    let Status;
+    (function (Status) {
+        Status["Success"] = "success";
+        Status["Failed"] = "failed";
+        Status["Running"] = "running";
+        Status["Created"] = "created";
+    })(Status = GitLab.Status || (GitLab.Status = {}));
     function processPayload(payload) {
-        if (payload.build_status !== 'success' && payload.build_status !== 'error') {
+        if (payload.build_status !== Status.Success && payload.build_status !== Status.Failed) {
             return null;
         }
         return {
@@ -20,8 +27,8 @@ var GitLab;
     GitLab.processPayload = processPayload;
     function getEmoji(status) {
         switch (status) {
-            case 'success': return message_service_1.Emoji.Success;
-            case 'error': return message_service_1.Emoji.Error;
+            case Status.Success: return message_service_1.Emoji.Success;
+            case Status.Failed: return message_service_1.Emoji.Error;
         }
         return message_service_1.Emoji.QuestionMark;
     }

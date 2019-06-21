@@ -1,5 +1,5 @@
-import * as Config from '../../../config';
 import {handlers} from "../handlers";
+import {Config} from "../core/config";
 
 export class MessageService {
 

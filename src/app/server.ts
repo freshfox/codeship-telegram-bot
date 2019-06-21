@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as parser from 'body-parser';
 import {BuildService} from "./services/build_service";
+import {telegramService, telegramWebhookPath} from "./services/telegram_service";
 
 export const app = express();
 
@@ -14,6 +15,11 @@ const redirects = {
 };
 
 const buildService = new BuildService();
+
+app.post(telegramWebhookPath, (req, res) => {
+	telegramService.processUpdate(req.body);
+	res.status(200).send();
+});
 
 app.post('/:ci/:chatId', (req, res) => {
 
