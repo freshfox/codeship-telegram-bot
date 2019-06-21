@@ -12,9 +12,8 @@ export class MessageService {
 	static getStartMessage(chatId: string) {
 		let hook = MessageService.getWebHooks(Object.keys(handlers), chatId);
 		return `${Emoji.Ship} Hi! I see you want to receive Codeship or Gitlab notifications.
-Just add this URL as a Webhook to your Codeship notification settings to receive notifications in this conversation.
+Just add this URL as a Webhook to your settings to receive notifications in this conversation.
 
-To receive <b>only failing builds</b> (and the recovering builds)
 ${hook}
 
 @codeship_bot by @dominic0`;

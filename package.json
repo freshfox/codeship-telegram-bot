@@ -10,7 +10,7 @@
     "build": "tsc",
     "test": "mocha src/test",
     "start": "node dist/app/start",
-    "deploy": "mkdir empty && firebase deploy -f --token \"$FIREBASE_TOKEN\" --project build-notifier-bot && rm -r empty",
+    "deploy": "mkdir -p empty && firebase deploy -f --token \"$FIREBASE_TOKEN\" --project build-notifier-bot && rm -r empty",
     "firebase": "firebase",
     "config:get": "firebase functions:config:get --project build-notifier-bot",
     "config:set": "firebase functions:config:set --project build-notifier-bot"

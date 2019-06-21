@@ -11,17 +11,12 @@
 			"tsconfig.json"
 		]
 	},
-	"hosting": [
-		{
-			"target": "api",
-			"public": "empty",
-			"cleanUrls": true,
-			"rewrites": [
-				{
-					"source": "**",
-					"function": "api"
-				}
-			]
-		}
-	]
+	"hosting": {
+		"public": "empty",
+		"cleanUrls": true,
+		"rewrites": [{
+			"source": "**", "function": "api"
+		}]
+
+	}
 }

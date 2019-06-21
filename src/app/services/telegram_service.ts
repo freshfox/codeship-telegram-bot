@@ -9,6 +9,7 @@ class TelegramService {
 	constructor()  {
 		this.bot = new TelegramBot(Config.app.telegramToken);
 		this.bot.setWebHook(Config.app.url + telegramWebhookPath);
+		console.log('Settings webook');
 		this.bot.on('message', this.onMessage.bind(this));
 	}
 

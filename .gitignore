@@ -1,11 +1,6 @@
 node_modules/
 .idea/
 .env
-
-!scripts/
-scripts/*
-
-!scripts/deploy
-!scripts/.deploy.sample
-
+dist/
+*.log
 
