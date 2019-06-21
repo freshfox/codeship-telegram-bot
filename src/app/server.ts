@@ -10,6 +10,10 @@ app.get('/', (req, res) => {
 	res.redirect('https://telegram.me/codeship_bot');
 });
 
+app.get('/test', (req, res) => {
+	res.send('works');
+});
+
 const redirects = {
 	'-147834436': '-1001141933878'
 };
@@ -37,6 +41,9 @@ app.post('/:ci/:chatId', (req, res) => {
 			console.error(err);
 			res.status(400).send(err.msg);
 		})
+});
 
+app.use((req, res) => {
+	res.status(404).send('not found');
 });
 
