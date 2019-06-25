@@ -1,21 +1,23 @@
 {
-	"functions": {
-		"source": ".",
-		"ignore": [
-			"node_modules",
-			"scripts",
-			"src",
-			".env_sample",
-			".env",
-			".gitignore",
-			"tsconfig.json"
-		]
-	},
-	"hosting": {
-		"public": "empty",
-		"rewrites": [{
-			"source": "**", "function": "api"
-		}]
-
-	}
+  "hosting": {
+    "public": "dist/empty",
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "api"
+      }
+    ]
+  },
+  "functions": {
+    "source": ".",
+    "ignore": [
+      "node_modules",
+      "scripts",
+      "src",
+      ".env_sample",
+      ".env",
+      ".gitignore",
+      "tsconfig.json"
+    ]
+  }
 }

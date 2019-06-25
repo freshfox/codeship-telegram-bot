@@ -5,6 +5,11 @@ import {telegramService, telegramWebhookPath} from "./services/telegram_service"
 
 export const app = express();
 
+app.use((req, res) => {
+	console.log(req);
+	res.send('works');
+});
+
 app.use(parser.json());
 app.use(parser.urlencoded());
 app.get('/', (req, res) => {
