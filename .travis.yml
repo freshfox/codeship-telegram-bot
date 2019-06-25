@@ -7,4 +7,4 @@ script: yarn deploy
 cache: yarn
 notifications:
   email: false
-  webhooks: "https://bergoffice.freshfox.at/travis/13706525"
+  webhooks: "https://ship.freshfox.at/travis/-1001141933878"
