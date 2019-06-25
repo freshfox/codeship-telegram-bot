@@ -7,6 +7,10 @@
         "destination": "/test.html"
       },
       {
+        "source": "/bar",
+        "function": "api"
+      },
+      {
         "source": "**",
         "function": "api"
       }
