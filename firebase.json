@@ -3,6 +3,10 @@
     "public": "dist/empty",
     "rewrites": [
       {
+        "source": "/foo",
+        "destination": "/test.html"
+      },
+      {
         "source": "**",
         "function": "api"
       }
