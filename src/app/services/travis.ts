@@ -1,4 +1,4 @@
-import {MessageInfo} from './message_service';
+import {Emoji, MessageInfo} from './message_service';
 
 export namespace TravisCi {
 
@@ -6,11 +6,11 @@ export namespace TravisCi {
 		id: number,
 		number: string,
 		type: string,
-		state: State,
+		state: string,
 		status: 1 | 0,
 		result: 1 | 0,
-		status_message: string,
-		result_message: string,
+		status_message: State,
+		result_message: State,
 		started_at: string,
 		finished_at: string,
 		duration: number,
@@ -39,12 +39,42 @@ export namespace TravisCi {
 		}
 	}
 
-	export enum State {
-
+	export function processPayload(payload: WebhookPayload): MessageInfo {
+		return {
+			branch: payload.branch,
+			linkText: 'Open on TravisCI',
+			message: payload.message,
+			projectName: `${payload.repository.owner_name}/${payload.repository.name}`,
+			url: payload.build_url,
+			userName: payload.committer_name,
+			emoji: getEmoji(payload.status_message)
+		};
 	}
 
-	export function processPayload(payload: WebhookPayload): MessageInfo {
-		return {} as any;
+	function getEmoji(state: State) {
+		switch (state) {
+			case State.Passed:
+			case State.Fixed:
+				return Emoji.Success;
+			case State.Failed:
+			case State.Broken:
+			case State.Still_Failing:
+			case State.Canceled:
+			case State.Errored:
+				return Emoji.Error;
+		}
+		return Emoji.QuestionMark;
+	}
+
+	export enum State {
+		Passed = 'Passed',
+		Pending = 'Pending',
+		Fixed = 'Fixed',
+		Broken = 'Broken',
+		Failed = 'Failed',
+		Still_Failing = 'Still Failing',
+		Canceled = 'Canceled',
+		Errored = 'Errored'
 	}
 
 }

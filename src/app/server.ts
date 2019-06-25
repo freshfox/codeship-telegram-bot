@@ -6,6 +6,7 @@ import {telegramService, telegramWebhookPath} from "./services/telegram_service"
 export const app = express();
 
 app.use(parser.json());
+app.use(parser.urlencoded());
 app.get('/', (req, res) => {
 	res.redirect('https://telegram.me/codeship_bot');
 });
@@ -32,8 +33,12 @@ app.post('/:ci/:chatId', (req, res) => {
 	if (redirects[chatId]) {
 		chatId = redirects[chatId];
 	}
+	let data = req.body;
+	if (data.payload) {
+		data = JSON.parse(data.payload);
+	}
 
-	buildService.onBuild(ci, chatId, req.body)
+	buildService.onBuild(ci, chatId, data)
 		.then(() => {
 			res.send();
 		})

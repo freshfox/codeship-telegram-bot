@@ -6,4 +6,5 @@ before_script:
 script: yarn deploy
 cache: yarn
 notifications:
-  webhooks: "https://bergoffice.freshfox.at/travis/123"
+  email: false
+  webhooks: "https://bergoffice.freshfox.at/travis/13706525"
