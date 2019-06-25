@@ -5,3 +5,5 @@ before_script:
   - yarn build
 script: yarn deploy
 cache: yarn
+notifications:
+  webhooks: "https://bergoffice.freshfox.at/travis/123"
