@@ -1,6 +1,7 @@
-import {Emoji, MessageInfo} from "./message_service";
+import {Emoji, MessageInfo} from './message_service';
 
 export namespace Codeship {
+
 	export interface WebhookPayload {
 		build:  {
 			build_url: string,
@@ -16,7 +17,6 @@ export namespace Codeship {
 			branch: string
 		}
 	}
-
 
 	export enum Status {
 		Initiated = 'initiated',
@@ -38,7 +38,8 @@ export namespace Codeship {
 			branch: build.branch,
 			message: build.message,
 			url: build.build_url,
-			emoji: getEmoji(build.status)
+			emoji: getEmoji(build.status),
+			status: build.status
 		}
 	}
 
@@ -46,6 +47,7 @@ export namespace Codeship {
 		switch (status) {
 			case Codeship.Status.Success: return Emoji.Success;
 			case Codeship.Status.Error: return Emoji.Error;
+			case Codeship.Status.Stopped: return Emoji.Hand;
 		}
 		return Emoji.QuestionMark;
 	}

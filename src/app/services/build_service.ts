@@ -1,8 +1,8 @@
 import {handlers} from "../handlers";
 import {telegramService} from "./telegram_service";
+import {analyticsService} from './analytics_service';
 
 export class BuildService {
-
 
 	constructor() {
 	}
@@ -20,6 +20,7 @@ export class BuildService {
 		if (msg) {
 			const result = await telegramService.send(chatId, msg);
 			console.log(msg, result);
+			await analyticsService.trackEvent(msg.projectName, msg.status, msg.userName, 0);
 			return result;
 		}
     }

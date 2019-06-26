@@ -1,4 +1,4 @@
-import {Emoji, MessageInfo} from "./message_service";
+import {Emoji, MessageInfo} from './message_service';
 
 export namespace GitLab {
 
@@ -63,7 +63,8 @@ export namespace GitLab {
 			branch: payload.ref,
 			projectName: payload.repository.name,
 			linkText: 'Open on Gitlab',
-			emoji: getEmoji(payload.build_status)
+			emoji: getEmoji(payload.build_status),
+			status: payload.build_status
 		};
 	}
 

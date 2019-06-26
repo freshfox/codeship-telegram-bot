@@ -35,12 +35,13 @@ export interface MessageInfo {
 	message: string;
 	url: string
 	linkText: string;
+	status: string;
 }
-
 
 export enum Emoji  {
 	Ship = '\u{1F6A2}',
 	Success = '\u{2705}',
 	Error = '\u{274C}',
+	Hand = '\u{270B}',
 	QuestionMark = '\u2753'
 }

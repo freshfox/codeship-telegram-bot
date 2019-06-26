@@ -47,7 +47,8 @@ export namespace TravisCi {
 			projectName: `${payload.repository.owner_name}/${payload.repository.name}`,
 			url: payload.build_url,
 			userName: payload.committer_name,
-			emoji: getEmoji(payload.status_message)
+			emoji: getEmoji(payload.status_message),
+			status: payload.status_message
 		};
 	}
 
