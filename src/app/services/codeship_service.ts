@@ -31,6 +31,9 @@ export namespace Codeship {
 
 	export function processPayload(payload: Codeship.WebhookPayload): MessageInfo {
 		const build = payload.build;
+		if ([Status.Success, Status.Stopped, Status.Ignored, Status.Blocked, Status.Error].indexOf(build.status) === -1) {
+			return null;
+		}
 		return {
 			linkText: 'Open on Codeship',
 			userName: build.committer,
