@@ -60,7 +60,7 @@ export namespace GitLab {
 			userName: payload.commit.author_name,
 			url: payload.repository.homepage + '/-/jobs/' + payload.build_id,
 			message: payload.commit.message,
-			branch: payload.ref,
+			branch: `${payload.ref} - ${payload.build_name}`,
 			projectName: payload.repository.name,
 			linkText: 'Open on Gitlab',
 			emoji: getEmoji(payload.build_status),
